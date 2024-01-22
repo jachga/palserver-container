@@ -1,0 +1,15 @@
+My personal Dockerfile (no extra scripts) that will download and run a PalWorld dedicated server.
+
+Currently works, using the official instructions from th PalWorld developers to get past a steam.so error.
+
+Game folder is a volume on `/game/`, and I left it to the server runner to change the game port (and other settings) in the respective configuration files (rather than have the CMD set the game port).
+
+I build it with:
+```
+sudo podman build --tag palserver .
+```
+
+and I run it with:
+```
+sudo podman run -d --name palserver -p 8211:8211/udp -v ~/palserver/:/game/:Z localhost/palserver:latest
+```
