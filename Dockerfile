@@ -1,4 +1,4 @@
-FROM docker.io/cm2network/steamcmd:root
+FROM docker.io/cm2network/steamcmd:latest
 
 # environment variables for both the Dockerfile and the entry script
 ENV STEAMCMD="${HOMEDIR}/steamcmd/steamcmd.sh"
@@ -19,6 +19,6 @@ EXPOSE ${GAMEPORT}/TCP
 EXPOSE ${GAMEPORT}/UDP
 
 CMD \
-	${STEAMCMD} +force_install_dir ${STEAMAPPDIR} +login anonymous +app_update ${STEAMAPPID} validate +exit && \
+	${STEAMCMD} +force_install_dir ${STEAMAPPDIR} +login anonymous +app_update ${STEAMAPPID} validate +quit && \
 	chmod +x ${STEAMAPPDIR}/PalServer.sh && \
 	${STEAMAPPDIR}/PalServer.sh
