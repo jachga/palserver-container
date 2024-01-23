@@ -6,6 +6,7 @@ ENV STEAMAPPID=2394010
 ENV STEAMAPP="palserver"
 ENV STEAMAPPDIR="/game"
 ENV GAMEPORT=8211
+ENV RCONPORT=25575
 
 RUN set -x \
 	mkdir -p ${STEAMAPPDIR} && \
@@ -14,7 +15,11 @@ RUN set -x \
 	cp ~/Steam/steamapps/common/Steamworks\ SDK\ Redist/linux64/steamclient.so ~/.steam/sdk64/
 
 VOLUME ["${STEAMAPPDIR}"]
+
 EXPOSE ${GAMEPORT}/UDP
+
+EXPOSE ${RCONPORT}/TCP
+EXPOSE ${RCONPORT}/UDP
 
 CMD \
 	${STEAMCMD} +force_install_dir ${STEAMAPPDIR} +login anonymous +app_update ${STEAMAPPID} validate +quit && \
