@@ -14,3 +14,5 @@ and I run it with:
 ```
 sudo podman run -d --name palserver -e GAMEPORT=8211 -p 8211:8211/udp -v ~/palserver/:/game/:Z localhost/palserver:latest
 ```
+
+I use `podman` on Fedora, but one should be able to replace `podman` with `docker` and have similar functionality.
